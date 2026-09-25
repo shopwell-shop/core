@@ -1,7 +1,7 @@
 parameters:
     env(PRODUCT_ANALYTICS_GATEWAY_URL): ''
 
-shopware:
+shopwell:
     api:
         api_browser:
             auth_required: false

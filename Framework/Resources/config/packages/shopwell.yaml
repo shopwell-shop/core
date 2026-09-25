@@ -1,12 +1,12 @@
 parameters:
     default_cdn_strategy: "id"
     env(APP_URL): ''
-    env(PRODUCT_ANALYTICS_GATEWAY_URL): 'https://product-analytics-gateway.services.shopware.io'
+    env(PRODUCT_ANALYTICS_GATEWAY_URL): 'https://product-analytics-gateway.services.shopwell.cn'
     APP_URL: "%env(string:APP_URL)%"
     env(REDIS_PREFIX): ''
-    env(SHOPWARE_DISABLE_UPDATE_CHECK): ''
+    env(SHOPWELL_DISABLE_UPDATE_CHECK): ''
 
-shopware:
+shopwell:
     http_cache:
         cookies: []
         soft_purge: false
@@ -210,7 +210,7 @@ shopware:
 
     cdn:
         url: ''
-        strategy: "%env(string:default:default_cdn_strategy:SHOPWARE_CDN_STRATEGY_DEFAULT)%"
+        strategy: "%env(string:default:default_cdn_strategy:SHOPWELL_CDN_STRATEGY_DEFAULT)%"
         path_cache_buster: true
         fastly:
             api_key: ''
@@ -241,7 +241,7 @@ shopware:
         max_limit: 500
         auth_code_ttl: 'PT5M'
         oauth_clients: # public OAuth clients allowed to use the authorization code grant with PKCE
-            shopware-cli:
+            shopwell-cli:
                 name: 'Shopwell CLI'
                 redirect_uris:
                     - 'http://127.0.0.1/callback'
@@ -422,8 +422,8 @@ shopware:
         transports: ["webhook", "async", "low_priority"]
 
     auto_update:
-        enabled: '%env(not:bool:default:defaults_bool_false:SHOPWARE_DISABLE_UPDATE_CHECK)%'
-        hide_module: '%env(bool:default:defaults_bool_false:SHOPWARE_AUTO_UPDATE_HIDE_MODULE)%'
+        enabled: '%env(not:bool:default:defaults_bool_false:SHOPWELL_DISABLE_UPDATE_CHECK)%'
+        hide_module: '%env(bool:default:defaults_bool_false:SHOPWELL_AUTO_UPDATE_HIDE_MODULE)%'
 
     store:
         frw: false
@@ -477,7 +477,7 @@ shopware:
         expire_days: 120
         storage:
             # supported types: mysql, redis
-            # for redis also the shopware.cart.storage.config.connection is required to point to a valid redis connection
+            # for redis also the shopwell.cart.storage.config.connection is required to point to a valid redis connection
             type: "mysql"
 
     order:
@@ -486,7 +486,7 @@ shopware:
 
     number_range:
         # supported types: mysql, redis
-        # for redis also the shopware.number_range.config.connection is required to point to a valid redis connection
+        # for redis also the shopwell.number_range.config.connection is required to point to a valid redis connection
         increment_storage: "mysql"
 
     sales_channel_context:
@@ -690,7 +690,7 @@ shopware:
         collection_enabled: true
         gateway:
             dispatch_enabled: true
-            base_uri: 'https://data.shopware.io'
+            base_uri: 'https://data.shopwell.cn'
             batch_size: 50
 
     feature_toggle:
