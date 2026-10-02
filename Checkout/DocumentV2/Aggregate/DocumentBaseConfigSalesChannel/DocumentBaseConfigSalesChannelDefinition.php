@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Shopwell\Core\Checkout\Document\Aggregate\DocumentBaseConfigSalesChannel;
+namespace Shopwell\Core\Checkout\DocumentV2\Aggregate\DocumentBaseConfigSalesChannel;
 
-use Shopwell\Core\Checkout\Document\Aggregate\DocumentBaseConfig\DocumentBaseConfigDefinition;
 use Shopwell\Core\Checkout\Document\Aggregate\DocumentType\DocumentTypeDefinition;
+use Shopwell\Core\Checkout\DocumentV2\Aggregate\DocumentBaseConfig\DocumentBaseConfigDefinition;
 use Shopwell\Core\Framework\DataAbstractionLayer\EntityDefinition;
 use Shopwell\Core\Framework\DataAbstractionLayer\Field\FkField;
 use Shopwell\Core\Framework\DataAbstractionLayer\Field\Flag\ApiAware;
@@ -14,6 +14,7 @@ use Shopwell\Core\Framework\DataAbstractionLayer\Field\IdField;
 use Shopwell\Core\Framework\DataAbstractionLayer\Field\ManyToOneAssociationField;
 use Shopwell\Core\Framework\DataAbstractionLayer\Field\StringField;
 use Shopwell\Core\Framework\DataAbstractionLayer\FieldCollection;
+use Shopwell\Core\Framework\Deprecation\BCChange\ClassMoved;
 use Shopwell\Core\Framework\Log\Package;
 use Shopwell\Core\System\SalesChannel\SalesChannelDefinition;
 
@@ -21,6 +22,7 @@ use Shopwell\Core\System\SalesChannel\SalesChannelDefinition;
  * @codeCoverageIgnore
  */
 #[Package('after-sales')]
+#[ClassMoved(version: 'v6.9.0', previousClassName: 'Shopwell\Core\Checkout\Document\Aggregate\DocumentBaseConfigSalesChannel\DocumentBaseConfigSalesChannelDefinition')]
 class DocumentBaseConfigSalesChannelDefinition extends EntityDefinition
 {
     final public const ENTITY_NAME = 'document_base_config_sales_channel';

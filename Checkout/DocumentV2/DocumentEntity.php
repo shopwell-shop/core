@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Shopwell\Core\Checkout\Document;
+namespace Shopwell\Core\Checkout\DocumentV2;
 
 use Shopwell\Core\Checkout\Document\Aggregate\DocumentType\DocumentTypeEntity;
 use Shopwell\Core\Checkout\DocumentV2\Aggregate\DocumentFile\DocumentFileCollection;
@@ -9,6 +9,7 @@ use Shopwell\Core\Content\Media\MediaEntity;
 use Shopwell\Core\Framework\DataAbstractionLayer\Entity;
 use Shopwell\Core\Framework\DataAbstractionLayer\EntityCustomFieldsTrait;
 use Shopwell\Core\Framework\DataAbstractionLayer\EntityIdTrait;
+use Shopwell\Core\Framework\Deprecation\BCChange\ClassMoved;
 use Shopwell\Core\Framework\Deprecation\BCChange\ParameterTypeWidening;
 use Shopwell\Core\Framework\Deprecation\BCChange\ReturnTypeWidening;
 use Shopwell\Core\Framework\Feature;
@@ -18,6 +19,7 @@ use Shopwell\Core\Framework\Log\Package;
  * @codeCoverageIgnore
  */
 #[Package('after-sales')]
+#[ClassMoved(version: 'v6.9.0', previousClassName: 'Shopwell\Core\Checkout\Document\DocumentEntity')]
 class DocumentEntity extends Entity
 {
     use EntityCustomFieldsTrait;

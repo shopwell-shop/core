@@ -1,13 +1,14 @@
 <?php declare(strict_types=1);
 
-namespace Shopwell\Core\Checkout\Document\Aggregate\DocumentBaseConfig;
+namespace Shopwell\Core\Checkout\DocumentV2\Aggregate\DocumentBaseConfig;
 
-use Shopwell\Core\Checkout\Document\Aggregate\DocumentBaseConfigSalesChannel\DocumentBaseConfigSalesChannelCollection;
 use Shopwell\Core\Checkout\Document\Aggregate\DocumentType\DocumentTypeEntity;
+use Shopwell\Core\Checkout\DocumentV2\Aggregate\DocumentBaseConfigSalesChannel\DocumentBaseConfigSalesChannelCollection;
 use Shopwell\Core\Content\Media\MediaEntity;
 use Shopwell\Core\Framework\DataAbstractionLayer\Entity;
 use Shopwell\Core\Framework\DataAbstractionLayer\EntityCustomFieldsTrait;
 use Shopwell\Core\Framework\DataAbstractionLayer\EntityIdTrait;
+use Shopwell\Core\Framework\Deprecation\BCChange\ClassMoved;
 use Shopwell\Core\Framework\Feature;
 use Shopwell\Core\Framework\Log\Package;
 
@@ -15,6 +16,7 @@ use Shopwell\Core\Framework\Log\Package;
  * @codeCoverageIgnore
  */
 #[Package('after-sales')]
+#[ClassMoved(version: 'v6.9.0', previousClassName: 'Shopwell\Core\Checkout\Document\Aggregate\DocumentBaseConfig\DocumentBaseConfigEntity')]
 class DocumentBaseConfigEntity extends Entity
 {
     use EntityCustomFieldsTrait;

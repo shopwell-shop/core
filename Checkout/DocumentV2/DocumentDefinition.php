@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Shopwell\Core\Checkout\Document;
+namespace Shopwell\Core\Checkout\DocumentV2;
 
 use Shopwell\Core\Checkout\Document\Aggregate\DocumentType\DocumentTypeDefinition;
 use Shopwell\Core\Checkout\DocumentV2\Aggregate\DocumentFile\DocumentFileDefinition;
@@ -22,6 +22,7 @@ use Shopwell\Core\Framework\DataAbstractionLayer\Field\OneToManyAssociationField
 use Shopwell\Core\Framework\DataAbstractionLayer\Field\ReferenceVersionField;
 use Shopwell\Core\Framework\DataAbstractionLayer\Field\StringField;
 use Shopwell\Core\Framework\DataAbstractionLayer\FieldCollection;
+use Shopwell\Core\Framework\Deprecation\BCChange\ClassMoved;
 use Shopwell\Core\Framework\Feature;
 use Shopwell\Core\Framework\Log\Package;
 use Shopwell\Core\System\NumberRange\DataAbstractionLayer\NumberRangeField;
@@ -30,6 +31,7 @@ use Shopwell\Core\System\NumberRange\DataAbstractionLayer\NumberRangeField;
  * @codeCoverageIgnore
  */
 #[Package('after-sales')]
+#[ClassMoved(version: 'v6.9.0', previousClassName: 'Shopwell\Core\Checkout\Document\DocumentDefinition')]
 class DocumentDefinition extends EntityDefinition
 {
     final public const ENTITY_NAME = 'document';

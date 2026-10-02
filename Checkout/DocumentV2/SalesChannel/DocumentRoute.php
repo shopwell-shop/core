@@ -1,19 +1,19 @@
 <?php declare(strict_types=1);
 
-namespace Shopwell\Core\Checkout\Document\SalesChannel;
+namespace Shopwell\Core\Checkout\DocumentV2\SalesChannel;
 
 use Shopwell\Core\Checkout\Customer\Service\GuestAuthenticator;
-use Shopwell\Core\Checkout\Document\DocumentCollection;
-use Shopwell\Core\Checkout\Document\DocumentDefinition;
-use Shopwell\Core\Checkout\Document\DocumentEntity;
 use Shopwell\Core\Checkout\Document\DocumentException;
-use Shopwell\Core\Checkout\Document\Extension\DocumentRouteExtension;
-use Shopwell\Core\Checkout\Document\Renderer\RenderedDocument;
 use Shopwell\Core\Checkout\Document\Renderer\ZugferdRenderer;
 use Shopwell\Core\Checkout\Document\Service\AbstractDocumentTypeRenderer;
 use Shopwell\Core\Checkout\Document\Service\DocumentGenerator;
 use Shopwell\Core\Checkout\Document\Service\PdfRenderer;
+use Shopwell\Core\Checkout\DocumentV2\DocumentCollection;
+use Shopwell\Core\Checkout\DocumentV2\DocumentDefinition;
+use Shopwell\Core\Checkout\DocumentV2\DocumentEntity;
+use Shopwell\Core\Checkout\DocumentV2\Extension\DocumentRouteExtension;
 use Shopwell\Core\Checkout\DocumentV2\Service\DocumentReader;
+use Shopwell\Core\Checkout\DocumentV2\Struct\RenderedDocument;
 use Shopwell\Core\Checkout\Order\Aggregate\OrderCustomer\OrderCustomerEntity;
 use Shopwell\Core\Checkout\Order\OrderEntity;
 use Shopwell\Core\Content\Media\Exception\IllegalFileNameException;
@@ -22,6 +22,7 @@ use Shopwell\Core\Framework\Adapter\Request\RequestParamHelper;
 use Shopwell\Core\Framework\Context;
 use Shopwell\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopwell\Core\Framework\DataAbstractionLayer\Search\Criteria;
+use Shopwell\Core\Framework\Deprecation\BCChange\ClassMoved;
 use Shopwell\Core\Framework\Deprecation\BCChange\VisibilityChange;
 use Shopwell\Core\Framework\Extensions\ExtensionDispatcher;
 use Shopwell\Core\Framework\Feature;
@@ -39,6 +40,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
 #[Package('after-sales')]
+#[ClassMoved(version: 'v6.9.0', previousClassName: 'Shopwell\Core\Checkout\Document\SalesChannel\DocumentRoute')]
 #[Route(defaults: [PlatformRequest::ATTRIBUTE_ROUTE_SCOPE => [StoreApiRouteScope::ID]])]
 final class DocumentRoute extends AbstractDocumentRoute
 {

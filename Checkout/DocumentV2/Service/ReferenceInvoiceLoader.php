@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Shopwell\Core\Checkout\Document\Service;
+namespace Shopwell\Core\Checkout\DocumentV2\Service;
 
 use Doctrine\DBAL\ArrayParameterType;
 use Doctrine\DBAL\Connection;
@@ -8,6 +8,7 @@ use Shopwell\Core\Checkout\Document\Renderer\InvoiceRenderer;
 use Shopwell\Core\Checkout\Document\Renderer\ZugferdEmbeddedRenderer;
 use Shopwell\Core\Checkout\Document\Renderer\ZugferdRenderer;
 use Shopwell\Core\Defaults;
+use Shopwell\Core\Framework\Deprecation\BCChange\ClassMoved;
 use Shopwell\Core\Framework\Log\Package;
 use Shopwell\Core\Framework\Uuid\Uuid;
 
@@ -15,6 +16,7 @@ use Shopwell\Core\Framework\Uuid\Uuid;
  * @internal - Fetch the $referenceDocumentId if set, otherwise fetch the latest document
  */
 #[Package('after-sales')]
+#[ClassMoved(version: 'v6.9.0', previousClassName: 'Shopwell\Core\Checkout\Document\Service\ReferenceInvoiceLoader')]
 final readonly class ReferenceInvoiceLoader
 {
     /**

@@ -1,14 +1,17 @@
 <?php declare(strict_types=1);
 
-namespace Shopwell\Core\Checkout\Document\Renderer;
+namespace Shopwell\Core\Checkout\DocumentV2\Struct;
 
 use Shopwell\Core\Checkout\Document\Service\PdfRenderer;
 use Shopwell\Core\Checkout\Order\OrderEntity;
 use Shopwell\Core\Framework\Context;
+use Shopwell\Core\Framework\Deprecation\BCChange\ClassMoved;
+use Shopwell\Core\Framework\Feature;
 use Shopwell\Core\Framework\Log\Package;
 use Shopwell\Core\Framework\Struct\Struct;
 
 #[Package('after-sales')]
+#[ClassMoved(version: 'v6.9.0', previousClassName: 'Shopwell\Core\Checkout\Document\Renderer\RenderedDocument')]
 final class RenderedDocument extends Struct
 {
     private string $template = '';
@@ -147,5 +150,15 @@ final class RenderedDocument extends Struct
     public function addParameter(string $key, mixed $value): void
     {
         $this->parameters[$key] = $value;
+    }
+
+    public function getApiAlias(): string
+    {
+        /** @deprecated tag:v6.9.0 - Remove the override, the API alias then follows the class name: `shopwell_core_checkout_document_v2_struct_rendered_document` */
+        if (!Feature::isActive('v6.9.0.0')) {
+            return 'shopwell_core_checkout_document_renderer_rendered_document';
+        }
+
+        return parent::getApiAlias();
     }
 }
