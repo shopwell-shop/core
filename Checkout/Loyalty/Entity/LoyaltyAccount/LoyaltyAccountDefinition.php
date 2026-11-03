@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Shopwell\Core\Checkout\Loyalty\Entity\CustomerLoyalty;
+namespace Shopwell\Core\Checkout\Loyalty\Entity\LoyaltyAccount;
 
 use Shopwell\Core\Checkout\Customer\CustomerDefinition;
-use Shopwell\Core\Checkout\Loyalty\Entity\CustomerPointTransaction\CustomerPointTransactionDefinition;
+use Shopwell\Core\Checkout\Loyalty\Entity\LoyaltyPointTransaction\LoyaltyPointTransactionDefinition;
 use Shopwell\Core\Checkout\Loyalty\Entity\LoyaltyTier\LoyaltyTierDefinition;
 use Shopwell\Core\Framework\DataAbstractionLayer\EntityDefinition;
 use Shopwell\Core\Framework\DataAbstractionLayer\Field\DateTimeField;
@@ -25,9 +25,9 @@ use Shopwell\Core\Framework\Log\Package;
  * @codeCoverageIgnore
  */
 #[Package('checkout')]
-class CustomerLoyaltyDefinition extends EntityDefinition
+class LoyaltyAccountDefinition extends EntityDefinition
 {
-    final public const ENTITY_NAME = 'customer_loyalty';
+    final public const ENTITY_NAME = 'loyalty_account';
 
     public function getEntityName(): string
     {
@@ -36,12 +36,12 @@ class CustomerLoyaltyDefinition extends EntityDefinition
 
     public function getCollectionClass(): string
     {
-        return CustomerLoyaltyCollection::class;
+        return LoyaltyAccountCollection::class;
     }
 
     public function getEntityClass(): string
     {
-        return CustomerLoyaltyEntity::class;
+        return LoyaltyAccountEntity::class;
     }
 
     public function since(): ?string
@@ -55,12 +55,12 @@ class CustomerLoyaltyDefinition extends EntityDefinition
             (new IdField('id', 'id'))->addFlags(new ApiAware(), new PrimaryKey(), new Required()),
             (new FkField('customer_id', 'customerId', CustomerDefinition::class))->addFlags(new ApiAware(), new Required()),
             (new IntField('points_balance', 'pointsBalance'))->addFlags(new ApiAware()),
-            (new IntField('growth_value', 'growthValue'))->addFlags(new ApiAware()),
-            (new FkField('membership_tier_id', 'membershipTierId', LoyaltyTierDefinition::class))->addFlags(new ApiAware(), new SetNullOnDelete()),
-            (new DateTimeField('membership_valid_until', 'membershipValidUntil'))->addFlags(new ApiAware()),
-            (new OneToManyAssociationField('transactions', CustomerPointTransactionDefinition::class, 'customer_id', 'id'))->addFlags(new CascadeDelete()),
+            (new IntField('tier_points', 'tierPoints'))->addFlags(new ApiAware()),
+            (new FkField('tier_id', 'tierId', LoyaltyTierDefinition::class))->addFlags(new ApiAware(), new SetNullOnDelete()),
+            (new DateTimeField('membership_paid_until', 'membershipPaidUntil'))->addFlags(new ApiAware()),
+            (new OneToManyAssociationField('transactions', LoyaltyPointTransactionDefinition::class, 'customer_id', 'id'))->addFlags(new CascadeDelete()),
             new OneToOneAssociationField('customer', 'customer_id', 'id', CustomerDefinition::class, false),
-            new ManyToOneAssociationField('membershipTier', 'membership_tier_id', LoyaltyTierDefinition::class, 'id', false),
+            new ManyToOneAssociationField('tier', 'tier_id', LoyaltyTierDefinition::class, 'id', false),
         ]);
     }
 }

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Shopwell\Core\System\Payment\Install;
+namespace Shopwell\Core\Checkout\Payment\Install;
 
 use Psr\Log\LoggerInterface;
 use Shopwell\Core\Checkout\Payment\PaymentMethodCollection;

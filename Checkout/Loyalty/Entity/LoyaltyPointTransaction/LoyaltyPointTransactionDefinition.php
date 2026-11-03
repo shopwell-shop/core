@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Shopwell\Core\Checkout\Loyalty\Entity\CustomerPointTransaction;
+namespace Shopwell\Core\Checkout\Loyalty\Entity\LoyaltyPointTransaction;
 
 use Shopwell\Core\Checkout\Customer\CustomerDefinition;
 use Shopwell\Core\Checkout\Loyalty\Entity\LoyaltyPointLotUse\LoyaltyPointLotUseDefinition;
@@ -26,9 +26,9 @@ use Shopwell\Core\System\User\UserDefinition;
  * @codeCoverageIgnore
  */
 #[Package('checkout')]
-class CustomerPointTransactionDefinition extends EntityDefinition
+class LoyaltyPointTransactionDefinition extends EntityDefinition
 {
-    final public const ENTITY_NAME = 'customer_point_transaction';
+    final public const ENTITY_NAME = 'loyalty_point_transaction';
 
     public function getEntityName(): string
     {
@@ -37,12 +37,12 @@ class CustomerPointTransactionDefinition extends EntityDefinition
 
     public function getCollectionClass(): string
     {
-        return CustomerPointTransactionCollection::class;
+        return LoyaltyPointTransactionCollection::class;
     }
 
     public function getEntityClass(): string
     {
-        return CustomerPointTransactionEntity::class;
+        return LoyaltyPointTransactionEntity::class;
     }
 
     public function since(): ?string

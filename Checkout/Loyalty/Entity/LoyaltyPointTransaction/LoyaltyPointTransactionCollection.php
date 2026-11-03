@@ -1,25 +1,25 @@
 <?php declare(strict_types=1);
 
-namespace Shopwell\Core\Checkout\Loyalty\Entity\CustomerLoyalty;
+namespace Shopwell\Core\Checkout\Loyalty\Entity\LoyaltyPointTransaction;
 
 use Shopwell\Core\Framework\DataAbstractionLayer\EntityCollection;
 use Shopwell\Core\Framework\Log\Package;
 
 /**
- * @extends EntityCollection<CustomerLoyaltyEntity>
+ * @extends EntityCollection<LoyaltyPointTransactionEntity>
  *
  * @codeCoverageIgnore
  */
 #[Package('checkout')]
-class CustomerLoyaltyCollection extends EntityCollection
+class LoyaltyPointTransactionCollection extends EntityCollection
 {
     public function getApiAlias(): string
     {
-        return 'customer_loyalty_collection';
+        return 'loyalty_point_transaction_collection';
     }
 
     protected function getExpectedClass(): string
     {
-        return CustomerLoyaltyEntity::class;
+        return LoyaltyPointTransactionEntity::class;
     }
 }

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Shopwell\Core\Checkout\Loyalty\Entity\CustomerPointTransaction;
+namespace Shopwell\Core\Checkout\Loyalty\Entity\LoyaltyPointTransaction;
 
 use Shopwell\Core\Checkout\Customer\CustomerEntity;
 use Shopwell\Core\Checkout\Loyalty\Entity\LoyaltyPointLotUse\LoyaltyPointLotUseCollection;
@@ -14,7 +14,7 @@ use Shopwell\Core\System\SalesChannel\SalesChannelEntity;
  * @codeCoverageIgnore
  */
 #[Package('checkout')]
-class CustomerPointTransactionEntity extends Entity
+class LoyaltyPointTransactionEntity extends Entity
 {
     use EntityIdTrait;
 
