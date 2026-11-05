@@ -1,8 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Shopwell\Core\System\Payment\Provider\Channel;
+namespace Shopwell\Core\System\Payment\Product;
 
 use Shopwell\Core\Framework\Log\Package;
+use Shopwell\Core\System\Payment\Exception\PaymentProviderException;
 use Shopwell\Core\System\Payment\PaymentException;
 use Shopwell\Core\System\Payment\Provider\PaymentProviderRegistry;
 
@@ -18,10 +19,10 @@ use Shopwell\Core\System\Payment\Provider\PaymentProviderRegistry;
  * @internal
  */
 #[Package('framework')]
-final class PaymentChannelRegistry
+final class PaymentProductRegistry
 {
     /**
-     * @var array<string, PaymentChannel>
+     * @var array<string, PaymentProduct>
      */
     private array $channels = [];
 
@@ -31,11 +32,11 @@ final class PaymentChannelRegistry
     public function __construct(PaymentProviderRegistry $providers)
     {
         foreach ($providers->all() as $provider) {
-            foreach ($provider->channels as $channel) {
+            foreach ($provider->products as $channel) {
                 $existing = $this->channels[$channel->technicalName] ?? null;
 
-                if ($existing instanceof PaymentChannel) {
-                    throw PaymentException::duplicateChannel($channel->technicalName, $existing->providerTechnicalName, $provider->technicalName);
+                if ($existing instanceof PaymentProduct) {
+                    throw PaymentProviderException::duplicateChannel($channel->technicalName, $existing->providerTechnicalName, $provider->technicalName);
                 }
 
                 $this->channels[$channel->technicalName] = $channel;
@@ -44,7 +45,7 @@ final class PaymentChannelRegistry
     }
 
     /**
-     * @return array<string, PaymentChannel>
+     * @return array<string, PaymentProduct>
      */
     public function all(): array
     {
@@ -67,13 +68,13 @@ final class PaymentChannelRegistry
     /**
      * @throws PaymentException
      */
-    public function get(string $technicalName): PaymentChannel
+    public function get(string $technicalName): PaymentProduct
     {
-        return $this->channels[$technicalName] ?? throw PaymentException::unknownChannel($technicalName);
+        return $this->channels[$technicalName] ?? throw PaymentProviderException::unknownChannel($technicalName);
     }
 
     /**
-     * @return list<PaymentChannel>
+     * @return list<PaymentProduct>
      */
     public function ofProvider(string $providerTechnicalName): array
     {
